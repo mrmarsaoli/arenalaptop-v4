@@ -20,7 +20,6 @@ async function start() {
     port = Number(process.env.PORT)
   }
 
-
   // Build only in dev mode
   if (config.dev) {
     const builder = new Builder(nuxt)

@@ -16,6 +16,9 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
+  // env: {
+  //   NODE_ENV: process.env.NODE_ENV
+  // },
   /*
    ** Customize the progress-bar color
    */
@@ -27,7 +30,20 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: '~/plugins/client.ts', mode: 'client' }],
+  /*
+   ** Router 
+   */
+  router: {
+    extendRoutes(routes, resolve) {
+      // Product list page
+      routes.push({
+        name: "post:detail",
+        path: "/:slug",
+        component: resolve(__dirname, "pages/post/detail/_slug.vue")
+      })
+    }
+  },
   /*
    ** Nuxt.js dev-modules
    */
@@ -50,7 +66,9 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: 'https://arenalaptop.com/wp-json/wp/v2'
+  },
   /*
    ** Build configuration
    */
